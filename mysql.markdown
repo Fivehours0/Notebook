@@ -1,3 +1,5 @@
+<font face="宋体">
+
 ##  连接mysql
     在mysql的bin目录下，打开cmd，输入mysql -u root -p
     退出: exit
@@ -25,12 +27,10 @@
   - 表中数据按行(行称为记录)存储，每一行类似java的一个对象
   - 主键: 可以通过该列取出特定的商品数据。
 
-<font color='red'> 
-
-注意点：
+$\color{red}
+{注意点：
 1.关系数据库必须以行为单位进行读写
-2.一个单元格只能输入一个数据
-</font>
+2.一个单元格只能输入一个数据}$
 
 ### 1.3SQL概要
 - SQL语句
@@ -49,12 +49,10 @@
     - GRANT： 赋予用户操作权限
     - REVOKE： 取消用户的操作权限
 
-<font color='red'>
-
-关键字不区分大小写
+$\color{red}
+{关键字不区分大小写
 字符串和日期常数需要使用单引号（'）括起来。'2010-01-26'
-数字常数无需加注单引号（直接书写数字即可）。
-</font> 
+数字常数无需加注单引号（直接书写数字即可）。}$
 
 ### 1.4表的创建
     表的创建格式：
@@ -74,11 +72,9 @@
   - VARCHAR(10): 可变长度字符串: 输入的字符串长度没达到10时，不用空格补足。
   - DATE: 用来指定存储日期（年月日）的列的数据类型（日期型）。
 
-<font color='red'>
-
-VARCHAR更加节省空间，CHAR则效率更加优秀
-由于VARCHAR长度可变，若经常修改，会引起行迁移等n'x现象，应尽量避免这种情况，设计为CHAR
-</font>
+$\color{red}
+{VARCHAR更加节省空间，CHAR则效率更加优秀
+由于VARCHAR长度可变，若经常修改，会引起行迁移等n'x现象，应尽量避免这种情况，设计为CHAR}$
 
 - 约束设置
   - NOT NULL: 要求不能为空
@@ -110,11 +106,8 @@ VARCHAR更加节省空间，CHAR则效率更加优秀
 ### 2.2 算数运算符和比较运算符
     算数运算符: 
         select age * 2 as age_x2 from testtable;
-<font color='red'>
-
-所有包含 NULL 的计算，结果肯定是 NULL。
-</font>
-
+$\color{red}
+{所有包含 NULL 的计算，结果肯定是 NULL。}$
     比较运算符: 
         在where中已经使用，
         不等号为<>
@@ -160,14 +153,13 @@ VARCHAR更加节省空间，CHAR则效率更加优秀
         SELECT → FROM →  WHERE →  GROUP BY
     语句的执行顺序
         FROM → WHERE → GROUP BY → SELECT
-<font color='red'>
 
-- 当聚合键中包含 NULL 时，也会将NULL作为一组特定的数据，
-- 使用聚合函数时， SELECT 子句中只能存在: 常数，聚合函数，聚合键(groupby中指定的列名)，也就是说，select子句中不能出现聚合键之外的列名。
-- GROUP BY子句结果的显示是无序的。
-- 在GROUP BY子句中不能使用SELECT子句中定义的别名。
-- 只有SELECT子句和HAVING子句（以及ORDER BY子句）中能够使用聚合函数。
-</font>
+
+$\color{red}{1.当聚合键中包含 NULL 时，也会将NULL作为一组特定的数据，}$
+$\color{red}{2.使用聚合函数时， SELECT 子句中只能存在: 常数，聚合函数，聚合键(groupby中指定的列名)，也就是说，select子句中不能出现聚合键之外的列名。}$
+$\color{red}{3.GROUP BY子句结果的显示是无序的。}$
+$\color{red}{4.在GROUP BY子句中不能使用SELECT子句中定义的别名。}$
+$\color{red}{5.只有SELECT子句和HAVING子句（以及ORDER BY子句）中能够使用聚合函数。}$
 
 ### 3.3 为聚合结果指定条件
     having功能: 指定条件来选取特定组:
@@ -207,11 +199,8 @@ VARCHAR更加节省空间，CHAR则效率更加优秀
         order by 列名1, 列名2
     排序键中含有NULL时，会显示在开头或者末尾
 
-<font color='red'>
-
-order by可以使用select子句中没有使用过的列名，也可以使用聚合函数
-
-</font>
+$\color{red}
+{order by可以使用select子句中没有使用过的列名，也可以使用聚合函数}$
 
 ## 4 数据更新
 ### 4.1 数据的插入(INSERT)
@@ -278,11 +267,10 @@ SET sale_price = sale_price + 1000
 WHERE product_name = 'T恤衫';
 COMMIT;
 ```
-    如果不执行事务的话，将commit换成rollback
-<font color='red'>
+    如果不执行事务的话，将commit换成rollback,可进行回滚，取消事务。
 
-commit提交之后就无法更改，一定要小心谨慎
-</font>
+$\color{red}
+{commit提交之后就无法更改，一定要小心谨慎}$
 
 ## 第五章
 ### 5.1 视图
@@ -309,3 +297,4 @@ FROM ProductSum
 ```
 ### 5.2 子查询
 ### 5.3 关联子查询
+

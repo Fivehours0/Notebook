@@ -1,10 +1,59 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [连接mysql](#%E8%BF%9E%E6%8E%A5mysql)
+- [mysql基本操作](#mysql%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C)
+- [1.数据库和sql](#1%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8Csql)
+  - [1.1数据库是什么](#11%E6%95%B0%E6%8D%AE%E5%BA%93%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [1.2数据库的结构](#12%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%BB%93%E6%9E%84)
+  - [1.3SQL概要](#13sql%E6%A6%82%E8%A6%81)
+  - [1.4表的创建](#14%E8%A1%A8%E7%9A%84%E5%88%9B%E5%BB%BA)
+  - [1.5表的删除和更新](#15%E8%A1%A8%E7%9A%84%E5%88%A0%E9%99%A4%E5%92%8C%E6%9B%B4%E6%96%B0)
+- [2.查询基础](#2%E6%9F%A5%E8%AF%A2%E5%9F%BA%E7%A1%80)
+  - [2.1 select语句基础](#21-select%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80)
+  - [2.2 算数运算符和比较运算符](#22-%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6)
+  - [2.3 逻辑运算符](#23-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6)
+- [3 聚合与排序](#3-%E8%81%9A%E5%90%88%E4%B8%8E%E6%8E%92%E5%BA%8F)
+  - [3.1 对表进行聚合查询](#31-%E5%AF%B9%E8%A1%A8%E8%BF%9B%E8%A1%8C%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2)
+  - [3.2 对表进行分组](#32-%E5%AF%B9%E8%A1%A8%E8%BF%9B%E8%A1%8C%E5%88%86%E7%BB%84)
+  - [3.3 为聚合结果指定条件](#33-%E4%B8%BA%E8%81%9A%E5%90%88%E7%BB%93%E6%9E%9C%E6%8C%87%E5%AE%9A%E6%9D%A1%E4%BB%B6)
+  - [3.4 对查询结果进行排序](#34-%E5%AF%B9%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F)
+- [4 数据更新](#4-%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0)
+  - [4.1 数据的插入(INSERT)](#41-%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8F%92%E5%85%A5insert)
+  - [4.2 数据的删除(DELETE)](#42-%E6%95%B0%E6%8D%AE%E7%9A%84%E5%88%A0%E9%99%A4delete)
+  - [4.3 数据的更新(UPDATE)](#43-%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9B%B4%E6%96%B0update)
+  - [4.4 事务](#44-%E4%BA%8B%E5%8A%A1)
+- [第五章](#%E7%AC%AC%E4%BA%94%E7%AB%A0)
+  - [5.1 视图](#51-%E8%A7%86%E5%9B%BE)
+  - [5.2 子查询](#52-%E5%AD%90%E6%9F%A5%E8%AF%A2)
+  - [5.3 关联子查询](#53-%E5%85%B3%E8%81%94%E5%AD%90%E6%9F%A5%E8%AF%A2)
+- [第六章](#%E7%AC%AC%E5%85%AD%E7%AB%A0)
+  - [6.1 各种各样的函数](#61-%E5%90%84%E7%A7%8D%E5%90%84%E6%A0%B7%E7%9A%84%E5%87%BD%E6%95%B0)
+  - [6.2 谓词](#62-%E8%B0%93%E8%AF%8D)
+  - [6.3 case表达式](#63-case%E8%A1%A8%E8%BE%BE%E5%BC%8F)
+- [第七章 集合运算](#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97)
+  - [表的加减法(表的合并)](#%E8%A1%A8%E7%9A%84%E5%8A%A0%E5%87%8F%E6%B3%95%E8%A1%A8%E7%9A%84%E5%90%88%E5%B9%B6)
+    - [集合运算](#%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97)
+  - [联结(以列为单位对表进行联结)](#%E8%81%94%E7%BB%93%E4%BB%A5%E5%88%97%E4%B8%BA%E5%8D%95%E4%BD%8D%E5%AF%B9%E8%A1%A8%E8%BF%9B%E8%A1%8C%E8%81%94%E7%BB%93)
+      - [inner join(内联结)](#inner-join%E5%86%85%E8%81%94%E7%BB%93)
+      - [outer join(外联结)](#outer-join%E5%A4%96%E8%81%94%E7%BB%93)
+      - [三张以上表的联结](#%E4%B8%89%E5%BC%A0%E4%BB%A5%E4%B8%8A%E8%A1%A8%E7%9A%84%E8%81%94%E7%BB%93)
+      - [cross join(交叉联结)](#cross-join%E4%BA%A4%E5%8F%89%E8%81%94%E7%BB%93)
+- [第八章 SQL高级处理](#%E7%AC%AC%E5%85%AB%E7%AB%A0-sql%E9%AB%98%E7%BA%A7%E5%A4%84%E7%90%86)
+- [第九章 JAVA与SQL连接](#%E7%AC%AC%E4%B9%9D%E7%AB%A0-java%E4%B8%8Esql%E8%BF%9E%E6%8E%A5)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+
 ##  连接mysql
     在mysql的bin目录下，打开cmd，输入mysql -u root -p
     退出: exit
 ##  mysql基本操作
     1.删除shop数据库: DROP DATABASE shop;
     2.创建数据库: CREATE DATABASE shop;
-##  1数据库和sql
+##  1.数据库和sql
 ### 1.1数据库是什么
     1.DB database
         1.1层次数据库: 树形结构
@@ -498,7 +547,7 @@ if表达式为(expr2, 3也可以返回真值(TRUE/FALSE的表达式)):
     IF(expr1,expr2,expr3)，如果expr1的值为true，则返回expr2的值，如果expr1的值为false，则返回expr3的值。
 
 ## 第七章 集合运算
-### 表的加减法
+### 表的加减法(表的合并)
 #### 集合运算
 UNION(去掉重复行)/UNION ALL(包含重复行), 表的加法:
 ```
@@ -578,4 +627,8 @@ inner join teacher_weight tw on t.teacher_id = tw.teacher_id;
 结果中的记录数是两张表中行数的乘积:
 
     因为 ShopProduct表存在 13 条记录， Product 表存在 8 条记录，所以结果中就包含了13 × 8 = 104 条记录。
-    
+  
+## 第八章 SQL高级处理
+mysql不支持
+## 第九章 JAVA与SQL连接
+
